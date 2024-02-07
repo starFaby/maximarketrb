@@ -1,0 +1,232 @@
+.starfn {
+  width: 100%;
+  position: relative;
+}
+
+.starfn>div {
+  width: 100%;
+  height: auto;
+  background-color: #D7CEC7;
+  color: #76323F;
+}
+
+.starfn>div>h1 {
+  float: left !important;
+}
+
+.starfn>div>button {
+  width: 35px;
+  height: 25px;
+  padding: 2px;
+  margin-top: 23px;
+  margin-right: 23px;
+  float: right !important;
+}
+
+/*submenu desaparece al principio*/
+.abgm {
+  display: none;
+}
+
+.starfn>div>h1 {
+  width: 35px;
+  height: 25px;
+  padding: 2px;
+  float: left !important;
+}
+
+.abg {
+  width: 60px;
+  height: auto;
+  float: right !important;
+}
+
+.abg>.hamburger>hr {
+  border-top: 4px solid black;
+  padding: 2px;
+  margin: 1px;
+  color: black;
+}
+
+.starfn>div {
+  display: none;
+}
+
+.starfn>nav {
+  width: 1000px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  border-bottom: 1px solid #555555;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#8b8b8b+0,6a6a6a+49,5e5e5e+51,717171+100 */
+  background: linear-gradient(to bottom, #8b8b8b 0%, #6a6a6a 49%, #5e5e5e 51%, #717171 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.starfn>nav>ul {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  float: left;
+}
+
+.starfn>nav>ul>li {
+  display: table-cell;
+  overflow: hidden;
+  width: 100%;
+  border-right: #5c5c5c;
+  border-left: 1px solid rgba(255, 255, 255, .2);
+}
+
+.starfn>nav>ul>li>a {
+  color: #fff;
+  display: block;
+  font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, .5);
+}
+
+.starfn>nav>ul>li:hover {
+  background: rgba(0, 0, 0, .3);
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-bottom: none;
+}
+
+.starfn>nav>ul>li:active {
+  background: rgba(0, 0, 0, .3);
+  box-shadow: inset 0px 3px 2px rgba(0, 0, 0, 1);
+}
+
+.starfn>nav>ul>.submenu>ul {
+  position: absolute;
+  background-color: #D7CEC7;
+  z-index: 2;
+}
+
+.starfn>nav>ul>.submenu>ul>li {
+  padding: 5px;
+  text-decoration: none;
+}
+
+.starfn>nav>ul>.submenu>ul>li>a {
+  text-decoration: none;
+}
+
+.pull-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right !important;
+}
+
+.btnsm {
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.logger>ul {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+.logger>ul {
+  list-style: none;
+  color: #fff;
+}
+
+.logger>ul>li {
+  display: inline-block;
+}
+
+
+.bienvenido {
+  margin: 3px;
+}
+
+.imguser {
+  margin: 3px;
+}
+
+.btnlogout {
+  text-align: center;
+  width: 50px;
+  height: 25px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+  background-color: #76323F;
+  border: 1px solid #76323F;
+
+}
+
+.btnlogout>a {
+  color: #D7CEC7;
+}
+
+.btnloginin {
+  width: 11vw;
+  border-radius: 5px;
+  background-color: #D7CEC7;
+  border: 1px solid #D7CEC7;
+}
+
+.btnloginin>a {
+  color: #76323F;
+  font-size: 15px;
+}
+
+.hide {
+  display: none;
+}
+
+.centerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show {
+  display: block;
+}
+
+.alin>ul>li {
+  display: inline-block;
+}
+
+
+
+
+@media only screen and (max-width: 750px) {
+
+  .starfn>div {
+    display: block;
+  }
+
+  .starfn>nav {
+    background-color: #565656;
+    width: 100%;
+
+  }
+
+  .alin>ul>li {
+    text-decoration: none;
+  }
+
+  .starfn>nav>ul>li {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .starfn>nav {
+    display: block;
+
+  }
+}

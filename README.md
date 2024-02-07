@@ -1,0 +1,1 @@
+pip install flask flask_bootstrap flask_fontawesome flask_sqlalchemy flask_marshmallow flask_login python-decouple pytz  marshmallow-sqlalchemy

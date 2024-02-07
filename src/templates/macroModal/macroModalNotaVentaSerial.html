@@ -1,0 +1,40 @@
+{% macro macroModalNoVeSerial(title, serial) %}
+<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-2 fw-bolder" id="staticBackdropLabel">{{title}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {% for item in serial%}
+                    <div class="col-md-6">
+                        <div>
+                            <strong class="display-5 fw-bolder">Nombre: </strong><span class="display-6">{{item.pfsabprodnombre}}</span>
+                        </div>
+                        <div>
+                            <strong class="display-5 fw-bolder">Detalle: </strong><span class="display-6">{{item.pfsabproddetalle}}</span>
+                        </div>
+                        <div>
+                            <strong class="display-5 fw-bolder">Precio: </strong><span class="display-6">{{item.pfsabprodprecio}}</span>
+                        </div>
+                        <div>
+                            <strong class="display-5 fw-bolder">Stock: </strong><span class="display-6">{{item.pfsabprodstock}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img style="width: 15vw;" src="{{item.pfsabprodimage}}" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

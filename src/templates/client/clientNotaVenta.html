@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% import 'macroModal/macroModalNotaVentaSerial.html' as macroModalnvSerial %}
+{% block title %}
+{{ super() }}
+Nota Venta
+{% endblock%}
+{% block content %}
+<div class="container">
+    <div style="font-size: 2vw;" class="well text-center">Nota de Venta</div>
+    
+    {% if existe == 1: %}
+    {{ macroModalnvSerial.macroModalNoVeSerial("Producto",serial) }}
+    {% endif %}
+    <section>
+        <form action="/ccnvvs" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtSerial">Serial</label>
+                        <input type="text" class="form-control" id="txtSerial" name="txtSerial"
+                            aria-describedby="textHelp" placeholder="Enter Serial">
+                        <small id="textHelp" class="form-text text-muted">We'll never share your Serial with anyone
+                            else.</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-lg m-4">Ver</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section>
+        <form>
+            <div class="form-group">
+                <label for="txtCedula">Cedula</label>
+                <input type="text" class="form-control" id="txtCedula" name="txtCedula" aria-describedby="cedulaHelp"
+                    placeholder="Enter Serial">
+                <small id="cedulaHelp" class="form-text text-muted">We'll never share your cedula with anyone
+                    else.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </section>
+</div>
+{% block custom_scripts %}
+{% if existe == 1: %}
+<script>
+    window.onload = function () {
+        $("#staticBackdrop").modal("show");
+    }   
+</script>
+{% endif %}
+{% endblock %}
+{% endblock %}
