@@ -8,10 +8,9 @@ from src.auth.security.securityAuth import SecurityAuth
 class ControllerLoginIn():
 
     def onGetControllerLoginView():
-         return render('auth/loginin.html')
+        return render('auth/loginin.html')
     
     def onGetControllerLoginIn():
-         
         try:
             txtUsername = request.form['txtUsername']
             txtPassword = request.form['txtPassword']
@@ -21,10 +20,8 @@ class ControllerLoginIn():
                     userModel = UserModel(user)
                     login_user(userModel)
                     token = SecurityAuth.onGetSecurityAuthToken()
-                    print("token====================")
-                    print(token)
                     flash('logiado correctamente', category='success')
-                    return render('index.html')
+                    return render('client/clientNotaVenta.html')
                 else:
                     flash('Password Incorrecto', category='info')
                     return render('auth/login.html')
@@ -35,3 +32,4 @@ class ControllerLoginIn():
             error = str(e.__dict__['orig'])
             print(error)
             return render('errors/error500.html')
+    

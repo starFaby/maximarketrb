@@ -1,0 +1,105 @@
+{% macro macroModalUserSave(title) %}
+<div class="modal" id="saveuser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-2 fw-bolder" id="staticBackdropLabel">{{title}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/arus" method="post">
+
+                    <div class="form-group">
+                        <label for="txtCedula">Cedula</label>
+                        <input type="text" class="form-control" id="txtCedula" name="txtCedula"
+                            aria-describedby="cedulaHelp" placeholder="Cedula email">
+                        <small id="cedulaHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtNombres">Nombres</label>
+                        <input type="text" class="form-control" id="txtNombres" name="txtNombres"
+                            aria-describedby="nombresHelp" placeholder="Enter Cedula">
+                        <small id="nombresHelp" class="form-text text-muted">We'll never share your nombres with anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtApellidos">Apellidos</label>
+                        <input type="text" class="form-control" id="txtApellidos" name="txtApellidos"
+                            aria-describedby="apellidosHelp" placeholder="Enter Apellidos">
+                        <small id="apellidosHelp" class="form-text text-muted">We'll never share your nombres with
+                            anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" id="txtUsername" name="txtUsername"
+                            aria-describedby="usernameHelp" placeholder="Enter Username">
+                        <small id="usernameHelp" class="form-text text-muted">We'll never share your nombres with anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                            aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtPassword">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                            placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtDireccion">Direccion</label>
+                        <input type="text" class="form-control" id="txtDireccion" name="txtDireccion"
+                            aria-describedby="direccionHelp" placeholder="Direccion email">
+                        <small id="direccionHelp" class="form-text text-muted">We'll never share your direccion with
+                            anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtCelular">Celular</label>
+                        <input type="text" class="form-control" id="txtCelular" name="txtCelular"
+                            aria-describedby="celularHelp" placeholder="Celular email">
+                        <small id="celularHelp" class="form-text text-muted">We'll never share your direccion with
+                            anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtTelefono">Telefono</label>
+                        <input type="text" class="form-control" id="txtTelefono" name="txtTelefono"
+                            aria-describedby="telefonoHelp" placeholder="Telefono email">
+                        <small id="telefonoHelp" class="form-text text-muted">We'll never share your telefono with
+                            anyone
+                            else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectEstado">Estado</label>
+                        <select class="form-control" id="selectEstado" name="selectEstado">
+                            <option selected>Elija...</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

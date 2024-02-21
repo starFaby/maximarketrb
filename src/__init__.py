@@ -13,11 +13,12 @@ from src.admin.router.adminRouterProducto import arp
 # Auth routes
 from src.auth.router.routerAuth import rauth
 from src.auth.router.routerLoginIn import rlgn
-from src.auth.router.routerDataBase import pfsbdssrb
+from src.auth.router.routerDataBase import pfsbdmmrb
 from src.auth.router.routerLogout import rlgt
 
 # client Routes
 from src.client.router.clientRouterNotaVenta import ccnvv
+from src.client.router.clientRouterLoginUserAuth import crlua
 
 # middlewares
 from src.middlewares.middlewaresLoginIn import UserModel
@@ -37,7 +38,7 @@ def apprun():
     #   Auth
     app.register_blueprint(rauth)
     app.register_blueprint(rlgn)
-    app.register_blueprint(pfsbdssrb)
+    app.register_blueprint(pfsbdmmrb)
     app.register_blueprint(rlgt)
     #   Admin
     app.register_blueprint(aru)
@@ -46,6 +47,7 @@ def apprun():
 
     #   Client
     app.register_blueprint(ccnvv)
+    app.register_blueprint(crlua)
     
     #Sistem
     loginManager.init_app(app)

@@ -13,3 +13,4 @@ class ClientServiceNotaVentaSerial:
             return serialOne
         except SQLAlchemyError as e:
             return render('errors/error500.html', e)
+        

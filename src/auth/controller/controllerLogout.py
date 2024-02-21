@@ -8,4 +8,4 @@ class ControllerLogout:
         logout_user()
         flash("Cerraste sesion !!", category="info")
         
-        return render('index.html')
+        return render('client/clientNotaVenta.html')

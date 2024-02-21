@@ -1,7 +1,7 @@
 from flask import Blueprint
 from src.migrate.migrate import initDB
 
-pfsbdssrb= Blueprint('pfsbdssrb', __name__)
+pfsbdmmrb= Blueprint('pfsbdmmrb', __name__)
 
-pfsbdssrb.route('/pfsbdssrb', methods=['GET'])(initDB)
+pfsbdmmrb.route('/pfsbdmmrb', methods=['GET'])(initDB)
 

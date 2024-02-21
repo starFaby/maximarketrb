@@ -17,32 +17,11 @@
     </div>
     <nav class="navs">
         <ul>
-            {% if current_user.is_authenticated %}
-            {% if current_user.id == 'starfaby' %}
-            {% if current_user.isadmin == True %}
-            {% if current_user.email == 'star._faby@hotmail.com' %}
-            <li class="submenu">
-                <button class="btnsm">Admin</button>
-                <ul class="abgm">
-                    <li><a href="/adcate">Admin Categoria <span class="icon"></span></a></li>
-                    <li><a href="/adcapr">Admin Categoria Producto<span class="icon"></span></a></li>
-                    <li><a href="/aru">Admin Users<span class="icon"></span></a></li>
-                    <!--
-                    <li><a href="/adpromo">Admin Promociones<span class="icon"></span></a></li>
-                    <li><a href="/racnt">Admin Canasta<span class="icon"></span></a></li>
-                    <li><a href="/ralcr">lucro<span class="icon"></span></a></li>
-                    -->
-                </ul>
-            </li>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endif %}
             <li><a href="/"><span class="icon">Inicio</span></a></li>
             <li><a href="/ccnvv"><span class="icon">Nota de Venta</span></a></li>
             <li><a href="/arc"><span class="icon">Categoria</span></a></li>
             <li><a href="/arp"><span class="icon">Productos </span></a></li>
-            <li><a href="/rcqs"><span class="icon">Quienes Somos</span></a></li>
+            <li><a href="/aru"><span class="icon">Usuarios</span></a></li>
             <li class="logger">
                 <ul>
                     {% if current_user.is_authenticated %}

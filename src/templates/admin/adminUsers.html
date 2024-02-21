@@ -1,18 +1,121 @@
 {% extends 'base.html' %}
+{% import 'macroModal/macroModalSaveUser.html' as macroModaSaUs %}
 {% block title %}
 {{ super() }}
-User
+Index
 {% endblock%}
 {% block content %}
-<div class="container">
+<div class="container p-4">
+    <div class="well text-center display-3">Clientes</div>
+    {% if view == 1: %}
+    {{ macroModaSaUs.macroModalUserSave("Agregando Usuario") }}
+    {% endif %}
     <div class="row">
-        <div class="col-md-4 col-md-offset-5">
-            <h2 class="well text-center">Registrate</h2>
-            {% for item in users %}
-                <h1>{{item.pfsusersnombres}}</h1>
+        <div class="col-md-12 p-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                            <a href="{{ url_for('aru.onGetAdminControllerUserSaveView')}}"><button type="button" class="btn btn-primary btn-lg"><span class="fs-3">Agregar Usuario</span></button></a>
+                    </div>
+                    <div class="col-4">
+                        <strong>Buscar Por: {{ tag }}</strong>
+                    </div>
+                    <div class="col-4">
+                        <form action="" method="post" autocomplete="off">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="tag" id="tag"
+                                        placeholder="Nombres..." />
+                                </div>
+                                <div class="col-6" align="left">
+                                    <input type="submit" value="Search" class="form-control btn btn-primary " name="">
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% if users != []: %}
+            <table class="table text-center">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Cedula</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">username</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Avatar</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            {% endfor %}
+                    {% for item in users.items %}
+                    <tr>
+                        <th scope="row">{{item.pfsuserscedula}}</th>
+                        <td>{{item.pfsusersnombres}}</td>
+                        <td>{{item.pfsusersapellidos}}</td>
+                        <td>{{item.pfsusersusername}}</td>
+                        <td>{{item.pfsusersemail}}</td>
+                        <td>{{item.pfsusersdireccion}}</td>
+                        <td>{{item.pfsuserscellphone}}</td>
+                        <td>{{item.pfsusersphone}}</td>
+                        <td><img style="width: 50px ; height: 50px ;" src="{{item.pfsusersavatar}}" alt=""></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if users.has_prev %}
+                    <li class="page-item"> <a class="page-link"
+                            href="{{ url_for('aru.onGetAdminControllerUserList', page=users.prev_num )}}">Previous</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item"> <a class="page link btn disabled" href="#">Previous</a></li>
+                    {% endif %}
+                    {% for page in users.iter_pages(left_edge=3, right_edge=3) %}
+                    {% if page %}
+
+                    {% if page==users.page %}
+                    <li class="page-item active"><a class="page-link"
+                            href="{{ url_for('aru.onGetAdminControllerUserList', page=page) }}">{{ page }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link"
+                            href="{{ url_for('aru.onGetAdminControllerUserList', page=page) }}">{{ page }}</a></li>
+                    {% endif %}
+
+                    {% else %}
+                    <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link">…</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if users.has_next %}
+                    <li class="page-item"> <a class="page-link"
+                            href="{{ url_for('aru.onGetAdminControllerUserList', page=users.next_num )}}">Next</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item"> <a class="page link btn disabled" href="#">Previous</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+            {% else %}
+            <section class="">
+                <h2 class="text-center" style="padding: 10px; font-size: 5vw;">No existe datos</h2>
+            </section>
+            {% endif %}
         </div>
     </div>
 </div>
+{% block custom_scripts %}
+{% if (view == 1) or (user == 1) %}
+<script>
+    window.onload = function () {
+        $("#saveuser").modal("show");
+        $("#updateuser").modal("show");
+    } 
+</script>
+{% endif %}
+{% endblock %}
 {% endblock %}

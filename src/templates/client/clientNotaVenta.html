@@ -1,53 +1,158 @@
 {% extends 'base.html' %}
 {% import 'macroModal/macroModalNotaVentaSerial.html' as macroModalnvSerial %}
+{% import 'macroModal/macroModalLoginUserAuth.html' as macroModalUserAuth %}
 {% block title %}
 {{ super() }}
 Nota Venta
 {% endblock%}
 {% block content %}
 <div class="container">
-    <div style="font-size: 2vw;" class="well text-center">Nota de Venta</div>
-    
+    <div style="font-size: 2vw;" class="well text-center fw-bolder">Nota de Venta</div>
     {% if existe == 1: %}
     {{ macroModalnvSerial.macroModalNoVeSerial("Producto",serial) }}
     {% endif %}
     <section>
         <form action="/ccnvvs" method="post">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label for="txtSerial">Serial</label>
-                        <input type="text" class="form-control" id="txtSerial" name="txtSerial"
+                        <label class="display-5 fw-bolder" for="txtSerial">Serial</label>
+                        <input type="number" class="form-control" id="txtSerial" name="txtSerial"
                             aria-describedby="textHelp" placeholder="Enter Serial">
                         <small id="textHelp" class="form-text text-muted">We'll never share your Serial with anyone
                             else.</small>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary btn-lg m-4">Ver</button>
+                </div>
+                <div class="col-md-6">
+                    <span class="display-1 fw-bolder">Nota de Venta</span>
                 </div>
             </div>
         </form>
     </section>
     <section>
-        <form>
-            <div class="form-group">
-                <label for="txtCedula">Cedula</label>
-                <input type="text" class="form-control" id="txtCedula" name="txtCedula" aria-describedby="cedulaHelp"
-                    placeholder="Enter Serial">
-                <small id="cedulaHelp" class="form-text text-muted">We'll never share your cedula with anyone
-                    else.</small>
+        <hr>
+        <div class="row">
+            <div class="col-md-6"><strong class="display-5 fw-bolder">Fecha: </strong>08/02/2024</div>
+            <div class="col-md-6"></div>
+        </div>
+        <hr>
+        <div class="row">
+            {% if user == 1: %}
+            {{ macroModalUserAuth.macroModalLoginUserAuth("Usuario",userOne) }}
+            {% endif %}
+            <div class="col-md-6">
+                {% if current_user.is_authenticated %}
+                <button class="btnlogout btn-lg m-4 h-75 w-75"><a class="fs-2" href="/rlgt">Logout</a></button>
+                {% else %}
+                <form action="/crluas" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="display-5 fw-bolder" for="txtCedula">Cedula:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" id="txtCedula" name="txtCedula"
+                                            aria-describedby="cedulaHelp" placeholder="Enter Cedula">
+                                        <small id="cedulaHelp" class="form-text text-muted">We'll never share your
+                                            cedula with
+                                            anyone
+                                            else.</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+            <div class="col-md-6">
+                <strong class="display-5 fw-bolder">User:&nbsp;</strong>
+                {% if current_user.is_authenticated %}
+                <span class="display-6">{{current_user.nombres}}&nbsp;{{current_user.apellidos}}</span>
+                {% else %}
+                <span class="display-6">Usuario No Registrado</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="display-5 fw-bolder">Celular: </strong>
+                {% if current_user.is_authenticated %}
+                <span class="display-6">{{current_user.cell}}</span>
+                {% else %}
+                <span class="display-6">Usuario No Registrado</span>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <strong class="display-5 fw-bolder">Correo: </strong>
+                {% if current_user.is_authenticated %}
+                <span class="display-6">{{current_user.email}}</span>
+                {% else %}
+                <span class="display-6">Usuario No Registrado</span>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <strong class="display-5 fw-bolder">Direccion:</strong>
+                {% if current_user.is_authenticated %}
+                <span class="display-6">{{current_user.direccion}}</span>
+                {% else %}
+                <span class="display-6">Usuario No Registrado</span>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <hr class="m">
+    <section>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio Unitario</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </div>
 {% block custom_scripts %}
-{% if existe == 1: %}
+{% if (existe == 1) or (user == 1) %}
 <script>
     window.onload = function () {
         $("#staticBackdrop").modal("show");
-    }   
+        $("#loginuserauth").modal("show");
+    } 
 </script>
 {% endif %}
 {% endblock %}

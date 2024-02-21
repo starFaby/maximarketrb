@@ -1,0 +1,72 @@
+{% macro macroModalLoginUserAuth(title, user) %}
+<div class="modal" id="loginuserauth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-2 fw-bolder text-center" id="staticBackdropLabel">{{title}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {% for item in user %}
+                    <div class="col-md-8">
+                        <br>
+                        <div>
+                            <strong class="fs-2 fw-bolder">Cedula:&nbsp;</strong><span
+                                class="fs-3">{{item.pfsuserscedula}}</span>
+                        </div>
+                        <br>
+                        <div>
+                            <strong class="fs-2 fw-bolder">Nombre:&nbsp;</strong><span
+                                class="fs-3">{{item.pfsusersnombres}} {{item.pfsusersapellidos}}</span>
+                        </div>
+                        <br>
+                        <div>
+                            <strong class="fs-2 fw-bolder">Email:&nbsp;</strong><span
+                                class="fs-3">{{item.pfsusersemail}}</span>
+                        </div>
+                        <br>
+                        <div>
+                            <strong class="fs-2 fw-bolder">Celular:&nbsp;</strong><span
+                                class="fs-3">{{item.pfsuserscellphone}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img style="width: 15vw;" src="{{item.pfsusersavatar}}" alt="">
+                    </div>
+                </div>
+                <div class="row m-4">
+                    <div class="col-md-12">
+                        <form action="/rlgin" method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtUsername">Username</label>
+                                        <input class="ipds" type="text" class="form-control" id="txtUsername" name="txtUsername"
+                                            aria-describedby="usarnameHelp" placeholder="Enter Username" value="{{item.pfsusersusername}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="txtPassword">Password</label>
+                                        <input class="ipds" type="password" class="form-control" id="txtPassword" name="txtPassword"
+                                            placeholder="Enter Password" value="star123">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-4">
+                                    <button type="submit" class="btn btn-danger btn-lg">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

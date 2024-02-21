@@ -16,7 +16,11 @@ class ClientControllerNotaVenta():
         aux = serial.count()
         if aux >= 1:
             existe = 1
+            flash('Producto Listadas', category='success')
             return render('client/clientNotaVenta.html', existe = existe, serial = serial) 
         else:
             existe = 0
             return render('client/clientNotaVenta.html', existe = existe, serial = serial) 
+    
+    def onGetClientControllerNotaVentaCreate():
+        pass

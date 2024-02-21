@@ -17,11 +17,11 @@ class User(db.Model):
     __tablename__='pfsusers'
 
     pfsusersid = db.Column(db.Integer, primary_key=True)
-    pfsuserscedula = db.Column(db.String(80), nullable=False)
+    pfsuserscedula = db.Column(db.String(80), unique=True, nullable=False)
     pfsusersnombres = db.Column(db.String(80), nullable=False)
     pfsusersapellidos = db.Column(db.String(80), nullable=False)
     pfsusersusername = db.Column(db.String(30), unique=True, nullable=False)
-    pfsusersemail = db.Column(db.String(120), nullable=False)
+    pfsusersemail = db.Column(db.String(120),unique=True, nullable=False)
     pfsuserspassword = db.Column(db.String(250), nullable=True)
     pfsusersdireccion = db.Column(db.String(100), nullable=True)
     pfsuserscellphone = db.Column(db.String(25), nullable=False)
@@ -58,6 +58,86 @@ class UserSchema(ma.Schema):
 
 userSchema = UserSchema()
 usersSchema = UserSchema(many=True)
+
+#----------------------------
+#----------canasta----------
+#--------------------------
+
+class Canasta(db.Model):
+    __tablename__='pfsabcanasta'
+
+    pfsabcnstid = db.Column(db.Integer, primary_key=True)
+    pfsabcnstnumpf = db.Column(db.Integer, nullable=False)
+    pfsabcnstsubtotal = db.Column(db.Integer, nullable=False)
+    pfsabcnstdto = db.Column(db.Integer, nullable=False)
+    pfsabcnstiva = db.Column(db.Integer, nullable=False)
+    pfsabcnstotal = db.Column(db.Integer, nullable=False)
+    pfsabcnstestado = db.Column(db.String(1), nullable=True)
+    pfsabcnstcreatedat = db.Column(db.Date, nullable=True) 
+
+    pfsusersid = db.Column(db.Integer, db.ForeignKey('pfsusers.pfsusersid',ondelete='CASCADE'), nullable=False)
+    pfsusers = db.relationship('User',backref=db.backref('pfsabcanasta',lazy=True))
+
+
+
+    def __init__(self, pfsabcnstnumpf, pfsabcnstsubtotal, pfsabcnstdto, pfsabcnstiva, pfsabcnstotal, pfsabcnstestado, pfsabcnstcreatedat, pfsusersid):
+        self.pfsabcnstnumpf = pfsabcnstnumpf
+        self.pfsabcnstsubtotal = pfsabcnstsubtotal
+        self.pfsabcnstdto = pfsabcnstdto
+        self.pfsabcnstiva = pfsabcnstiva
+        self.pfsabcnstotal = pfsabcnstotal
+        self.pfsabcnstestado = pfsabcnstestado
+        self.pfsabcnstcreatedat = pfsabcnstcreatedat 
+        self.pfsusersid = pfsusersid 
+
+class CanastaSchema(ma.Schema):
+    class Meta:
+        fields = ('pfsabcnstid', 'pfsabcnstnumpf', 'pfsabcnstsubtotal', 'pfsabcnstdto', 'pfsabcnstiva', 'pfsabcnstotal', 'pfsabcnstestado', 'pfsabcnstcreatedat', 'pfsusersid')
+
+canastaSchema = CanastaSchema()
+canastaSchema = CanastaSchema(many=True)
+
+
+#-----------------------------------
+#----------DETALLE CANASTA----------
+#-----------------------------------
+
+class Detallecanasta(db.Model):
+    __tablename__='pfsabdetallecanasta'
+
+    pfsabdcid = db.Column(db.Integer, primary_key=True)
+    pfsabdcnumpf = db.Column(db.Integer, nullable=False)
+    pfsabdcantidad = db.Column(db.Integer, nullable=False)
+    pfsabdcprecio = db.Column(db.Integer, nullable=False)
+    pfsabdctotal = db.Column(db.Integer, nullable=False)
+    pfsabdcestado = db.Column(db.String(1), nullable=True)
+    pfsabdcreatedat = db.Column(db.String(11), nullable=True) 
+
+    pfsabproductoid = db.Column(db.Integer, db.ForeignKey('pfsabproductos.pfsabprodid',ondelete='CASCADE'), nullable=False)
+    pfsabproducto = db.relationship('Producto',backref=db.backref('pfsabdetallecanasta',lazy=True))
+
+    pfsabcanastaid = db.Column(db.Integer, db.ForeignKey('pfsabcanasta.pfsabcnstid',ondelete='CASCADE'), nullable=False)
+    pfsabcanasta = db.relationship('Canasta',backref=db.backref('pfsabdetallecanasta',lazy=True))
+
+
+
+    def __init__(self, pfsabdcnumpf, pfsabdcantidad, pfsabdcprecio, pfsabdctotal, pfsabdcestado, pfsabdcreatedat, pfsabproductoid, pfsabcanastaid):
+        self.pfsabdcnumpf = pfsabdcnumpf
+        self.pfsabdcantidad = pfsabdcantidad
+        self.pfsabdcprecio = pfsabdcprecio
+        self.pfsabdctotal = pfsabdctotal
+        self.pfsabdcestado = pfsabdcestado
+        self.pfsabdcreatedat = pfsabdcreatedat
+        self.pfsabproductoid = pfsabproductoid
+        self.pfsabcanastaid = pfsabcanastaid
+
+class DetallecanastaSchema(ma.Schema):
+    class Meta:
+        fields = ('pfsabdcid','pfsabdcnumpf', 'pfsabdcantidad', 'pfsabdcprecio', 'pfsabdctotal', 'pfsabdcestado', 'pfsabdcreatedat', 'pfsabproductoid', 'pfsabcanastaid')
+
+detallecanastaSchema = DetallecanastaSchema()
+detallecanastaSchema = DetallecanastaSchema(many=True)
+
 
 #-----------------------------------------------------------
 #---------------CATEGORIA----------------------------------
