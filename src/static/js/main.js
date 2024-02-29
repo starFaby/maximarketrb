@@ -59,5 +59,17 @@ $(document).ready(function () {
       text: message
     })
   }
+  cantidad = document.getElementById("txtCantidad")
+  if (cantidad) {
+    cantidad.addEventListener("keyup", function () {
+      cantidaValor = document.getElementById("txtCantidad").value;
+      precioValor = document.getElementById("txtPrecio").value;
+      aux = (cantidaValor * precioValor)
+      total = Number(aux.toFixed(2))
+      document.getElementById("txtTotal").value = total;
+      console.log("el precio total es" + total)
+    });
+  }
+
 
 });

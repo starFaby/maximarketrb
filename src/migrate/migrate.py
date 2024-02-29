@@ -21,7 +21,7 @@ def initDB():
         pfsusersavatar = "https://res.cloudinary.com/dqmbrjl7jfs/image/upload/v1638923678/starfaby_uqbwru.jpg",
         pfsusersestado = 1,
         pfsuserscreatedat = datetime.now()
-           
+        
     )
     admin.onGetSetPassword(admin.pfsuserspassword)
     db.session.add(admin)

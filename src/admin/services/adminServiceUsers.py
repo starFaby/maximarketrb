@@ -44,6 +44,7 @@ class AdminServiceUser:
                                     pfsusersavatar = modelUser.getpfsusersavatar(),
                                     pfsusersestado = modelUser.getpfsusersestado(),
                                     pfsuserscreatedat = modelUser.getpfsuserscreatedat())
+            newUser.onGetSetPassword(pfsuserspassword = modelUser.getpfsuserspassword())
             db.session.add(newUser)
             db.session.commit()
 

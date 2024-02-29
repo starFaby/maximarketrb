@@ -38,7 +38,7 @@ class AdminControllerUser:
         pfsusersapellidos = request.form['txtApellidos']
         pfsusersusername = request.form['txtUsername']
         pfsusersemail = request.form['txtEmail']
-        pfsuserspassword = request.form['txtPassword']
+        pfsuserspassword = "mmrb2024"
         pfsusersdireccion = request.form['txtDireccion']
         pfsuserscellphone = request.form['txtCelular']
         pfsusersphone = request.form['txtTelefono']

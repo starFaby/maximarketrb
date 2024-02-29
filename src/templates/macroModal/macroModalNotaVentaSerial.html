@@ -12,16 +12,37 @@
                     {% for item in serial%}
                     <div class="col-md-6">
                         <div>
-                            <strong class="display-5 fw-bolder">Nombre: </strong><span class="display-6">{{item.pfsabprodnombre}}</span>
+                            <strong class="fs-1 fw-bolder">Nombre: </strong><span
+                                class="display-6">{{item.pfsabprodnombre}}</span>
                         </div>
                         <div>
-                            <strong class="display-5 fw-bolder">Detalle: </strong><span class="display-6">{{item.pfsabproddetalle}}</span>
+                            <strong class="fs-1 fw-bolder">Detalle: </strong><span
+                                class="display-6">{{item.pfsabproddetalle}}</span>
                         </div>
                         <div>
-                            <strong class="display-5 fw-bolder">Precio: </strong><span class="display-6">{{item.pfsabprodprecio}}</span>
+                            <div class="form-group">
+                                <label class="fs-1 fw-bolder" for="txtCantidad">Cantidad</label>
+                                <input type="number" class="form-control" id="txtCantidad" name="txtCantidad"
+                                    placeholder="Cantidad Enter">
+                            </div>
                         </div>
                         <div>
-                            <strong class="display-5 fw-bolder">Stock: </strong><span class="display-6">{{item.pfsabprodstock}}</span>
+                            <div class="form-group">
+                                <label class="fs-1 fw-bolder" for="txtPrecio">Precio</label>
+                                <input type="text" class="form-control inputTextDisabled" id="txtPrecio" name="txtPrecio"
+                                    placeholder="Cantidad Enter" value="{{item.pfsabprodprecio}}">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="fs-1 fw-bolder" for="txtTotal">Total</label>
+                                <input type="text" class="form-control inputTextDisabled" id="txtTotal" name="txtTotal"
+                                    placeholder="Total Enter" value="">
+                            </div>
+                        </div>
+                        <div>
+                            <strong class="fs-1 fw-bolder">Stock: </strong><span
+                                class="display-6">{{item.pfsabprodstock}}</span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -32,8 +53,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Crear Nota de venta</button>
                 <button type="button" class="btn btn-primary">Añadir</button>
+                <a href="/arusv"><button type="button" class="btn btn-primary">Registrarse</button></a>
             </div>
         </div>
     </div>
