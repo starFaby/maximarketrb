@@ -68,10 +68,10 @@ class Canasta(db.Model):
 
     pfsabcnstid = db.Column(db.Integer, primary_key=True)
     pfsabcnstnumpf = db.Column(db.Integer, nullable=False)
-    pfsabcnstsubtotal = db.Column(db.Integer, nullable=False)
-    pfsabcnstdto = db.Column(db.Integer, nullable=False)
-    pfsabcnstiva = db.Column(db.Integer, nullable=False)
-    pfsabcnstotal = db.Column(db.Integer, nullable=False)
+    pfsabcnstsubtotal = db.Column(db.Float, nullable=False)
+    pfsabcnstdto = db.Column(db.Float, nullable=False)
+    pfsabcnstiva = db.Column(db.Float, nullable=False)
+    pfsabcnstotal = db.Column(db.Float, nullable=False)
     pfsabcnstestado = db.Column(db.String(1), nullable=True)
     pfsabcnstcreatedat = db.Column(db.Date, nullable=True) 
 
@@ -106,10 +106,10 @@ class Detallecanasta(db.Model):
     __tablename__='pfsabdetallecanasta'
 
     pfsabdcid = db.Column(db.Integer, primary_key=True)
-    pfsabdcnumpf = db.Column(db.Integer, nullable=False)
+    pfsabdcnumpf = db.Column(db.Float, nullable=False)
     pfsabdcantidad = db.Column(db.Integer, nullable=False)
-    pfsabdcprecio = db.Column(db.Integer, nullable=False)
-    pfsabdctotal = db.Column(db.Integer, nullable=False)
+    pfsabdcprecio = db.Column(db.Float, nullable=False)
+    pfsabdctotal = db.Column(db.Float, nullable=False)
     pfsabdcestado = db.Column(db.String(1), nullable=True)
     pfsabdcreatedat = db.Column(db.String(11), nullable=True) 
 
@@ -179,7 +179,7 @@ class Producto(db.Model):
     pfsabprodnombre = db.Column(db.String(80), nullable=False)
     pfsabprodimage = db.Column(db.String(300), nullable=False)
     pfsabproddetalle = db.Column(db.String(300), nullable=False)
-    pfsabprodprecio = db.Column(db.String(6), nullable=False) #double
+    pfsabprodprecio = db.Column(db.Float, nullable=False) #float
     pfsabprodstock = db.Column(db.String(10), nullable=False) #int
     pfsabprodestado = db.Column(db.String(1), nullable=True)
     pfsabprodcreatedat = db.Column(db.String(11), nullable=True) 

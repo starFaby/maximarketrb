@@ -18,7 +18,8 @@ from src.auth.router.routerLogout import rlgt
 
 # client Routes
 from src.client.router.clientRouterNotaVenta import ccnvv
-from src.client.router.clientRouterLoginUserAuth import crlua
+from src.client.router.clientRouterLoginUserAuth import crlua 
+from src.client.router.clientRouterDetalleNotaVenta import crdnv 
 
 # middlewares
 from src.middlewares.middlewaresLoginIn import UserModel
@@ -48,6 +49,7 @@ def apprun():
     #   Client
     app.register_blueprint(ccnvv)
     app.register_blueprint(crlua)
+    app.register_blueprint(crdnv)
     
     #Sistem
     loginManager.init_app(app)

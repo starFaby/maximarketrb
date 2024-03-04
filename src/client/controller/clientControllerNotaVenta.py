@@ -3,6 +3,7 @@ from flask import request, render_template as render , flash, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 from src.client.services.clientServiceNotaVentaSerial import ClientServiceNotaVentaSerial
 from src.client.services.clientServiceNotaVentaCreate import ClientServiceNotaVentaCreate
+from src.client.services.clientServiceDetalleNotaVenta import ClientServiceDetalleNotaVenta
 from src.middlewares.middlewaresLoginIn import UserModel
 from sqlalchemy.exc import SQLAlchemyError
 from src.auth.security.securityAuth import SecurityAuth
@@ -12,9 +13,19 @@ from flask_login import current_user
 class ClientControllerNotaVenta():
 
     def onGetClientControllerNotaVentaView():
-        return render('client/clientNotaVenta.html')
+        detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()
+        return render('client/clientNotaVenta.html', detalleNoVe=detalleNoVe)
+        
     
     def onGetClientControllerNotaVentaSerial():
+        idUser = 0
+        if current_user.is_authenticated:
+            idUser = current_user.iduser
+            if idUser >= 1:
+                idUser = 1
+            else:
+                idUser = 0        
+
         pfsabprodserial = request.form['txtSerial']
         
         serial = ClientServiceNotaVentaSerial.onGetClientServiceNotaVentaSerial(pfsabprodserial)
@@ -22,10 +33,10 @@ class ClientControllerNotaVenta():
         if aux >= 1:
             existe = 1
             flash('Producto Listadas', category='success')
-            return render('client/clientNotaVenta.html', existe = existe, serial = serial) 
+            return render('client/clientNotaVenta.html', existe = existe, serial = serial, idUser = idUser) 
         else:
             existe = 0
-            return render('client/clientNotaVenta.html', existe = existe, serial = serial) 
+            return render('client/clientNotaVenta.html', existe = existe, serial = serial, idUser = idUser) 
     
 
     def onGetClientControllerNotaVentaCreate():

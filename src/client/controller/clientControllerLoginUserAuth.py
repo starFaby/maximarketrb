@@ -10,7 +10,6 @@ class ClientControllerLoginUserAuth():
     def onGetClientControllerLoginUserAuth():
         txtCedula = request.form['txtCedula']
         userOne = ClientServiceLoginUserAuth.onGetClientServiceLoginUserAuth(txtCedula)
-        print(userOne.count())
         aux = userOne.count()
         if aux >= 1:
             user = 1
