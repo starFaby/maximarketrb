@@ -1,5 +1,5 @@
 # ingresar al sistema ya registrado
-from flask import request, render_template as render , flash
+from flask import request, render_template as render , flash, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 from src.auth.services.serviceAuth import ServiceAuth
 from src.client.controller.clientControllerNotaVenta import ClientControllerNotaVenta
@@ -25,15 +25,16 @@ class ControllerLoginIn():
                     login_user(userModel)
                     #token = SecurityAuth.onGetSecurityAuthToken() 
                     ClientControllerNotaVenta.onGetClientControllerNotaVentaCreate() 
-                    detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()                  
+                    #detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()                  
                     flash('logiado correctamente', category='success')
-                    return render('client/clientNotaVenta.html', detalleNoVe = detalleNoVe)
+                    #return render('client/clientNotaVenta.html', detalleNoVe = detalleNoVe)
+                    return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
                 else:
                     flash('Password Incorrecto', category='info')
-                    return render('client/clientNotaVenta.html')
+                    return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
             else:
                 flash('Usuario y password Incorrecto', category='error')
-                return render('client/clientNotaVenta.html')
+                return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
         except SQLAlchemyError as e:
             error = str(e.__dict__['orig'])
             print(error)

@@ -13,8 +13,12 @@ from flask_login import current_user
 class ClientControllerNotaVenta():
 
     def onGetClientControllerNotaVentaView():
+        auxDetalleTotal = []
         detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()
-        return render('client/clientNotaVenta.html', detalleNoVe=detalleNoVe)
+        for item in detalleNoVe:
+            auxDetalleTotal.append(item.pfsabdctotal)
+        auxSuma = np.sum(auxDetalleTotal)
+        return render('client/clientNotaVenta.html', detalleNoVe=detalleNoVe, auxSuma = auxSuma)
         
     
     def onGetClientControllerNotaVentaSerial():

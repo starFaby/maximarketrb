@@ -133,6 +133,30 @@ Nota Venta
                     <td>{{item.pfsabdctotal}}</td>
                 </tr>
                 {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>La suma es: </td>
+                    <td><input type="text" name="txtSubTotal" id="txtSubTotal" value="{{auxSuma}}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Iva: </td>
+                    <td><input type="text" name="txtIva" id="txtIva" value="0"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Dto: </td>
+                    <td><input type="text" name="txtDto" id="txtDto" value="0"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total: </td>
+                    <td><input type="text" name="txtTotal" id="txtTotal" value="{{auxSuma}}"></td>
+                </tr>
             </tbody>
         </table>
     </section>

@@ -11,7 +11,7 @@ class ClientControllerDetalleNotaVenta():
         idCanasta = 0
         cnstNum = 0
         auxIdNumUser = ClientServiceNumNotaVentaUser.onGetClientServiceNumNotaVentaUser()
-        #detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()
+        detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()
         for item in auxIdNumUser:
             idCanasta = item.pfsabcnstid
             cnstNum = item.pfsabcnstnumpf
@@ -28,9 +28,13 @@ class ClientControllerDetalleNotaVenta():
                 pfsabcanastaid = idCanasta
 
                 if pfsabdcnumpf != '' and pfsabdcantidad != '' and pfsabdcprecio != '' and pfsabdctotal != '' and pfsabdcestado != '' and  pfsabdcreatedat != '' and pfsabproductoid != '' and pfsabcanastaid != '':
-                    ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaSave(pfsabdcnumpf, pfsabdcantidad, pfsabdcprecio, pfsabdctotal, pfsabdcestado, pfsabdcreatedat, pfsabproductoid, pfsabcanastaid)
-                    flash('Producto Listadas', category='success')
-                    return render('client/clientNotaVenta.html')
+                    aux = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaSave(pfsabdcnumpf, pfsabdcantidad, pfsabdcprecio, pfsabdctotal, pfsabdcestado, pfsabdcreatedat, pfsabproductoid, pfsabcanastaid)
+                    if aux:
+                        flash('Producto Listadas', category='success')
+                        return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
+                    else:
+                        flash('Producto Listadas', category='success')
+                        return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
                 else:
                     flash('No se pudo Guardar', category='info')
                     return render('client/clientNotaVenta.html')
