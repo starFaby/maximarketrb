@@ -133,32 +133,47 @@ Nota Venta
                     <td>{{item.pfsabdctotal}}</td>
                 </tr>
                 {% endfor %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>La suma es: </td>
-                    <td><input class="inputTextDisabled" type="text" name="txtSubTotal" id="txtSubTotal" value="{{auxSuma}}"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Iva: </td>
-                    <td><input class="inputTextDisabled" type="text" name="txtIva" id="txtIva" value="0"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Dto: </td>
-                    <td><input class="inputTextDisabled" type="text" name="txtDto" id="txtDto" value="0"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Total: </td>
-                    <td><input class="inputTextDisabled" type="text" name="txtTotal" id="txtTotal" value="{{auxSuma}}"></td>
-                </tr>
             </tbody>
         </table>
+        <section>
+            <form action="" method="post">
+                <div class="row m-2">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center">SubTotal: </div>
+                    <div class="col text-center"><input class="inputTextDisabled text-center" type="text"
+                            name="txtSubTotal" id="txtSubTotal" value="{{auxSuma}}"></div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center">Dto: </div>
+                    <div class="col text-center"><input class="inputTextDisabled text-center" type="text" name="txtDto"
+                            id="txtDto" value="0"></div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center">Iva: </div>
+                    <div class="col text-center"><input class="inputTextDisabled text-center" type="text" name="txtIva"
+                            id="txtIva" value="0"></div>
+                </div>
+                <div class="row m-2">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center">Total: </div>
+                    <div class="col text-center"><input class="inputTextDisabled text-center" type="text"
+                            name="txtTotal" id="txtTotal" value="{{auxSuma}}"></div>
+                </div>
+                <div class="row m-4">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center"><button type="button" class="btn btn-primary btn-lg">Guardar e Imprimir</button>
+                    </div>
+                </div>
+            </form>
+        </section>
     </section>
 </div>
 {% block custom_scripts %}
