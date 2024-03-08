@@ -4,3 +4,4 @@ from src.client.controller.clientControllerNotaVenta import ClientControllerNota
 ccnvv= Blueprint('ccnvv', __name__)
 ccnvv.route('/ccnvv', methods=['GET'])(ClientControllerNotaVenta.onGetClientControllerNotaVentaView)
 ccnvv.route('/ccnvvs', methods=['GET', 'POST'])(ClientControllerNotaVenta.onGetClientControllerNotaVentaSerial)
+ccnvv.route('/ccnvvsa', methods=['GET', 'POST'])(ClientControllerNotaVenta.onGetClientControllerNotaVentaSaveArchiv)

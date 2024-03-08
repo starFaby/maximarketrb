@@ -42,7 +42,7 @@ class ClientServiceDetalleNotaVenta:
                 aux = item.pfsabcnstnumpf
             
             #userDetaNoVe = pd.Series(Detallecanasta.query.filter(Detallecanasta.pfsabdcnumpf == aux))
-            userDetaNoVe = pd.Series(Detallecanasta.query.join(Producto, Detallecanasta.pfsabproductoid == Producto.pfsabprodid).add_columns(Detallecanasta.pfsabdcantidad, Producto.pfsabproddetalle, Detallecanasta.pfsabdcprecio, Detallecanasta.pfsabdctotal).filter(Detallecanasta.pfsabdcnumpf == aux))
+            userDetaNoVe = pd.Series(Detallecanasta.query.join(Producto, Detallecanasta.pfsabproductoid == Producto.pfsabprodid).add_columns(Detallecanasta.pfsabdcantidad, Producto.pfsabproddetalle, Detallecanasta.pfsabdcprecio, Detallecanasta.pfsabdctotal, Detallecanasta.pfsabcanastaid).filter(Detallecanasta.pfsabdcnumpf == aux))
             return userDetaNoVe
         except SQLAlchemyError as e:
             return render('errors/error500.html', e)                

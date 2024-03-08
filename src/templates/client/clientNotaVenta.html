@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% import 'macroModal/macroModalNotaVentaSerial.html' as macroModalnvSerial %}
 {% import 'macroModal/macroModalLoginUserAuth.html' as macroModalUserAuth %}
+{% import 'client/modal/modalPrintCanasta.html' as macroModalPrintCanasta %}
 {% block title %}
 {{ super() }}
 Nota Venta
@@ -10,6 +11,9 @@ Nota Venta
     <div style="font-size: 2vw;" class="well text-center fw-bolder">Nota de Venta</div>
     {% if existe == 1: %}
     {{ macroModalnvSerial.macroModalNoVeSerial("Producto",serial, idUser) }}
+    {% endif %}
+    {% if printCan == 1: %}
+    {{ macroModalPrintCanasta.macroModalPrintCanasta("Imprimiendo Canasta",printCan, idCanasta) }}
     {% endif %}
     <section>
         <form action="/ccnvvs" method="post">
@@ -136,7 +140,10 @@ Nota Venta
             </tbody>
         </table>
         <section>
-            <form action="" method="post">
+            <form action="/ccnvvsa" method="post">
+                <div>
+                    <input type="text" id="txtIdCanasta" name="txtIdCanasta" value="{{auxIdCanastaUser}}">
+                </div>
                 <div class="row m-2">
                     <div class="col"></div>
                     <div class="col"></div>
@@ -169,7 +176,7 @@ Nota Venta
                     <div class="col"></div>
                     <div class="col"></div>
                     <div class="col"></div>
-                    <div class="col text-center"><button type="button" class="btn btn-primary btn-lg">Guardar e Imprimir</button>
+                    <div class="col text-center"><button type="submit" class="btn btn-primary btn-lg">Guardar e Imprimir</button>
                     </div>
                 </div>
             </form>
@@ -177,11 +184,12 @@ Nota Venta
     </section>
 </div>
 {% block custom_scripts %}
-{% if (existe == 1) or (user == 1) %}
+{% if (existe == 1) or (user == 1) or (printCan == 1) %}
 <script>
     window.onload = function () {
         $("#staticBackdrop").modal("show");
         $("#loginuserauth").modal("show");
+        $("#printcanasta").modal("show");
     } 
 </script>
 {% endif %}

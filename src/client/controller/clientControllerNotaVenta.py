@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, login_required
 from src.client.services.clientServiceNotaVentaSerial import ClientServiceNotaVentaSerial
 from src.client.services.clientServiceNotaVentaCreate import ClientServiceNotaVentaCreate
 from src.client.services.clientServiceDetalleNotaVenta import ClientServiceDetalleNotaVenta
+from src.client.services.clientServiceNoVeSaveArchi import ClientServiceNotaVentaSaveArchiv
 from src.middlewares.middlewaresLoginIn import UserModel
 from sqlalchemy.exc import SQLAlchemyError
 from src.auth.security.securityAuth import SecurityAuth
@@ -13,12 +14,15 @@ from flask_login import current_user
 class ClientControllerNotaVenta():
 
     def onGetClientControllerNotaVentaView():
+        auxIdCanastaUser = 0
         auxDetalleTotal = []
         detalleNoVe = ClientServiceDetalleNotaVenta.onGetClientServiceDetalleNotaVentaAll()
         for item in detalleNoVe:
+            auxIdCanastaUser = item.pfsabcanastaid 
             auxDetalleTotal.append(item.pfsabdctotal)
+        
         auxSuma = np.sum(auxDetalleTotal)
-        return render('client/clientNotaVenta.html', detalleNoVe=detalleNoVe, auxSuma = auxSuma)
+        return render('client/clientNotaVenta.html', detalleNoVe=detalleNoVe, auxSuma = auxSuma, auxIdCanastaUser = auxIdCanastaUser)
         
     
     def onGetClientControllerNotaVentaSerial():
@@ -91,3 +95,25 @@ class ClientControllerNotaVenta():
             flash('Creado la Factura correctamente', category='success')
         else:
             flash('Error al crear la factura', category='success')
+    
+    def onGetClientControllerNotaVentaSaveArchiv():
+        idCanasta = request.form['txtIdCanasta']
+        pfsabcnstsubtotal = request.form['txtSubTotal']
+        pfsabcnstdto = request.form['txtDto']
+        pfsabcnstiva = request.form['txtIva']
+        pfsabcnstotal = request.form['txtTotal']
+        if idCanasta != '' and pfsabcnstsubtotal != '' and pfsabcnstdto != '' and pfsabcnstiva != '' and pfsabcnstotal != '':
+            auxCliSerNoVeSaArc = ClientServiceNotaVentaSaveArchiv.onGetClientServiceNotaVentaSaveArchiv(idCanasta, pfsabcnstsubtotal, pfsabcnstdto, pfsabcnstiva, pfsabcnstotal)
+            if auxCliSerNoVeSaArc:
+                printCan= 1
+                flash('Creado la Factura correctamente', category='success')
+                return render('client/clientNotaVenta.html', printCan = printCan, idCanasta = idCanasta)
+            else:
+                flash('No se Guardo, Existe un Problema en el Servicio', category='success')
+                return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
+
+        else:
+            flash('Se Encuentra Vacio unos de los Campos', category='success')
+            return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
+
+
