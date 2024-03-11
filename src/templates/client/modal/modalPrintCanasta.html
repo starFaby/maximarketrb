@@ -9,7 +9,17 @@
             </div>
             <div class="modal-body">
                 <h2 class="text-center"> Listo para imprimir</h2>
-                <p>La id de la cansta es: </p><span>{{idCanasta}}</span>
+                <form action="/crpnv" method="post">
+                    <div class="col-6">
+                        <label for=""></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" name="txtIdCanasta" id="txtIdCanasta" value="{{idCanasta}}">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-lg btn-primary">Imprimir</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

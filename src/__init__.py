@@ -1,5 +1,4 @@
 #System
-
 from flask import Flask
 from flask_login import LoginManager
 from .config.config import Config
@@ -20,6 +19,7 @@ from src.auth.router.routerLogout import rlgt
 from src.client.router.clientRouterNotaVenta import ccnvv
 from src.client.router.clientRouterLoginUserAuth import crlua 
 from src.client.router.clientRouterDetalleNotaVenta import crdnv 
+from src.client.router.clientRouterPrintNotaVenta import crpnv 
 
 # middlewares
 from src.middlewares.middlewaresLoginIn import UserModel
@@ -50,6 +50,7 @@ def apprun():
     app.register_blueprint(ccnvv)
     app.register_blueprint(crlua)
     app.register_blueprint(crdnv)
+    app.register_blueprint(crpnv)
     
     #Sistem
     loginManager.init_app(app)
