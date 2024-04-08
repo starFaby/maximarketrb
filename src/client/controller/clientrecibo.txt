@@ -1,0 +1,10 @@
+*******************************
+***********Maximarketing*******
+*******************************
+Cedula:1700000000 
+Nombre:Consumidor  
+Apellido:Final 
+email:consumidorfinal@gmail.com 
+celular:0999666999 
+cantidad Nombre Precio Total 
+11....1....0.3....3.3
