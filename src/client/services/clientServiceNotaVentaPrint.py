@@ -15,6 +15,16 @@ class ClientServiceNotaVentaPrint:
             return render('errors/error500.html', e)
         
     @classmethod
+    def onGetClientServiceNotaVentaPrintIdDetalleNotaVenta(self, idCanasta):
+        try:
+            #detalleNotaVenta = pd.Series(Detallecanasta.query.filter(Detallecanasta.pfsabcanastaid == idCanasta))
+            detalleNotaVenta =Detallecanasta.query.join(Producto, Detallecanasta.pfsabproductoid == Producto.pfsabprodid).add_columns(Detallecanasta.pfsabdcantidad, Producto.pfsabprodnombre, Detallecanasta.pfsabdcprecio, Detallecanasta.pfsabdctotal).filter(Detallecanasta.pfsabcanastaid == idCanasta).filter(Detallecanasta.pfsabdcestado == 1)
+            return detalleNotaVenta
+        except SQLAlchemyError as e:
+            return render('errors/error500.html', e)
+
+        
+    @classmethod
     def onGetClientServiceNotaVentaPrintIdNotaVenta(self, idUser, idCanasta):
         try:
             canasta = pd.Series(Canasta.query.filter(Canasta.pfsusersid == idUser).filter(Canasta.pfsabcnstid == idCanasta))
@@ -22,10 +32,4 @@ class ClientServiceNotaVentaPrint:
         except SQLAlchemyError as e:
             return render('errors/error500.html', e)
         
-    @classmethod
-    def onGetClientServiceNotaVentaPrintIdDetalleNotaVenta(self, idCanasta):
-        try:
-            detalleNotaVenta = pd.Series(Detallecanasta.query.filter(Detallecanasta.pfsabcanastaid == idCanasta))
-            return detalleNotaVenta
-        except SQLAlchemyError as e:
-            return render('errors/error500.html', e)
+    

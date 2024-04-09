@@ -15,9 +15,8 @@ class ClientControllerPrintNotaVenta():
         if current_user.is_authenticated:
             idUser = current_user.iduser
         idCanasta = request.form['txtIdCanasta']
-        print("La id de la canastaes: ", idCanasta)
         ClientControllerPrintNotaVenta.onGetClientControllerPrintNotaVentaText(idUser, idCanasta)
-        #ClientControllerPrintNotaVenta.onGetClientControllerPrintNotaVentaPrint()
+        ClientControllerPrintNotaVenta.onGetClientControllerPrintNotaVentaPrint()
         logout_user()
         return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
     
@@ -40,18 +39,30 @@ class ClientControllerPrintNotaVenta():
         
         file = open('src/client/controller/clientrecibo.txt', 'w')
         file.write("*******************************\n")
-        file.write("***********Maximarketing*******\n")
+        file.write("*********Maximarketing*********\n")
         file.write("*******************************\n")
         file.write(f"Cedula:{cedula} \n")
         file.write(f"Nombre:{nombre} \n")
         file.write(f"Apellido:{apellido} \n")
         file.write(f"email:{email} \n")
         file.write(f"celular:{celular} \n")
-        file.write("cantidad Nombre Precio Total \n")
+        file.write("cant  Nombre      Precio  Total \n")
 
         for item in resultDetalleCanasta:
-            textPrint = f"{item.pfsabdcantidad}....{item.pfsabproductoid}....{item.pfsabdcprecio}....{item.pfsabdctotal}"
-            file.write(textPrint)
+            textPrint = f"{item.pfsabdcantidad}     {item.pfsabprodnombre}        {item.pfsabdcprecio}    {item.pfsabdctotal}"
+            file.write(f"{textPrint} \n")
+
+        file.write(f"\n")
+
+        for item in resultCanasta:
+            subtotal = item.pfsabcnstsubtotal
+            file.write(f"              Subtotal    {subtotal} \n")
+            dto = item.pfsabcnstdto
+            file.write(f"              Dto         {dto} \n")
+            iva = item.pfsabcnstiva
+            file.write(f"              Iva         {iva} \n")
+            total = item.pfsabcnstotal
+            file.write(f"              Total       {total} \n")
         
 
         file.close()
@@ -59,10 +70,7 @@ class ClientControllerPrintNotaVenta():
     def onGetClientControllerPrintNotaVentaPrint():
         
         filePath = "src/client/controller/clientrecibo.txt"
-        #filePath = "nota.txt"
         printers = win32print.EnumPrinters(win32print.PRINTER_ENUM_LOCAL, None, 1)
-        for item in printers:
-            print(item[2])
         printerName = 'POS-58'
         fileHandle = open(filePath, 'rb')
         printerHandle = win32print.OpenPrinter(printerName)
