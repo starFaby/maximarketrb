@@ -64,6 +64,15 @@ class ClientControllerPrintNotaVenta():
             total = item.pfsabcnstotal
             file.write(f"              Total       {total} \n")
         
+        file.write("*******************************\n")
+        file.write("*******************************\n")
+        file.write("Propietario \n")
+        file.write("Roberto Brito \n")
+        file.write("Email: automatismosbrito@hotmail.com \n")
+        file.write("Direccion: Caran N3-131 y Echeveria\n")
+        file.write("Cel: +593995054605 \n")
+        file.write("*******************************\n")
+        file.write("*******************************\n")
 
         file.close()
     

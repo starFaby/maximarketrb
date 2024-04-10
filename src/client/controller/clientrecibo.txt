@@ -7,10 +7,19 @@ Apellido:Final
 email:consumidorfinal@gmail.com 
 celular:0999666999 
 cant  Nombre      Precio  Total 
-9     arroz        0.3    2.7 
 4     arroz        0.3    1.2 
+9     arroz        0.3    2.7 
 
               Subtotal    3.9 
               Dto         0.0 
               Iva         0.0 
               Total       3.9 
+*******************************
+*******************************
+Propietario 
+Roberto Brito 
+Email: automatismosbrito@hotmail.com 
+Direccion: Caran N3-131 y Echeveria
+Cel: +593995054605 
+*******************************
+*******************************
