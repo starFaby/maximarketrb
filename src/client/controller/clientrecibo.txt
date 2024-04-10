@@ -16,7 +16,7 @@ cant  Nombre      Precio  Total
               Total       3.9 
 *******************************
 *******************************
-Propietario 
+          Propietario 
 Roberto Brito 
 Email: automatismosbrito@hotmail.com 
 Direccion: Caran N3-131 y Echeveria

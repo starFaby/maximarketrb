@@ -66,11 +66,11 @@ class ClientControllerPrintNotaVenta():
         
         file.write("*******************************\n")
         file.write("*******************************\n")
-        file.write("Propietario \n")
+        file.write("         Propietario \n")
         file.write("Roberto Brito \n")
-        file.write("Email: automatismosbrito@hotmail.com \n")
-        file.write("Direccion: Caran N3-131 y Echeveria\n")
-        file.write("Cel: +593995054605 \n")
+        file.write("automatismosbrito@hotmail.com \n")
+        file.write("Caran N3-131 y Echeveria\n")
+        file.write("0995054605 \n")
         file.write("*******************************\n")
         file.write("*******************************\n")
 
