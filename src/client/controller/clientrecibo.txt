@@ -7,19 +7,21 @@ Apellido:Final
 email:consumidorfinal@gmail.com 
 celular:0999666999 
 cant  Nombre      Precio  Total 
-4     arroz        0.3    1.2 
-9     arroz        0.3    2.7 
+arroz                      0.6
+           2 X 0.3            
+Mortadela  de pollo       6.75
+           5 X 1.35           
 
-              Subtotal    3.9 
+              Subtotal    7.35 
               Dto         0.0 
               Iva         0.0 
-              Total       3.9 
+              Total       7.35 
 *******************************
 *******************************
-          Propietario 
+         Propietario 
 Roberto Brito 
-Email: automatismosbrito@hotmail.com 
-Direccion: Caran N3-131 y Echeveria
-Cel: +593995054605 
+automatismosbrito@hotmail.com 
+Caran N3-131 y Echeveria
+0995054605 
 *******************************
 *******************************

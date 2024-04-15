@@ -21,6 +21,7 @@ class ClientControllerPrintNotaVenta():
         return redirect(url_for('ccnvv.onGetClientControllerNotaVentaView'))
     
     def onGetClientControllerPrintNotaVentaText(idUser, idCanasta): 
+        width = 30
         cedula = ""
         nombre = ""
         apellido = ""
@@ -46,11 +47,20 @@ class ClientControllerPrintNotaVenta():
         file.write(f"Apellido:{apellido} \n")
         file.write(f"email:{email} \n")
         file.write(f"celular:{celular} \n")
-        file.write("cant  Nombre      Precio  Total \n")
+        file.write("Nombre                    Total \n")
 
         for item in resultDetalleCanasta:
-            textPrint = f"{item.pfsabdcantidad}     {item.pfsabprodnombre}        {item.pfsabdcprecio}    {item.pfsabdctotal}"
-            file.write(f"{textPrint} \n")
+            cantidad = item.pfsabdcantidad 
+            producto = item.pfsabprodnombre
+            precio = item.pfsabdcprecio
+            precioTotal = str(item.pfsabdctotal)
+            ppt = f"{producto}".ljust(width-len(precioTotal), " ")
+            ppt += precioTotal
+            detalle = f"{cantidad} X {precio}".center(width)
+            file.write(ppt)
+            file.write(f"\n")
+            file.write(detalle)
+            file.write(f"\n")
 
         file.write(f"\n")
 
